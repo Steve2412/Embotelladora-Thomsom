@@ -94,7 +94,7 @@ foreach ($result as $row){
       <form class="">
          <div class="form-group">
             <label for="Cedula" style="font-size:20px">Cédula</label>
-            <input type="number" class="form-control form-control-lg" style="font-size:20px" id="Cedula" placeholder="24875002">
+            <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "10" class="form-control form-control-lg" style="font-size:20px" id="Cedula" placeholder="24875002">
 
             <label for="Nombre" style="font-size:20px">Nombre</label>
             <input type="text" class="form-control form-control-lg" style="font-size:20px" id="Nombre" placeholder="Pedro Picapiedra">
@@ -103,14 +103,14 @@ foreach ($result as $row){
             <input type="email" class="form-control form-control-lg" id="Correo" style="font-size:20px" placeholder="ejemplo@gmail.com">
 
             <label for="Telefono" style="font-size:20px">Teléfono</label>
-            <input type="telf" class="form-control form-control-lg" id="Telefono" style="font-size:20px" placeholder="04249666128">
+            <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "15" class="form-control form-control-lg" id="Telefono" style="font-size:20px" placeholder="04249666128">
 
             <label for="Direccion" style="font-size:20px">Dirección</label>
             <input type="text" class="form-control form-control-lg" style="font-size:20px" id="Direccion" placeholder="Avenida Delicias">
 
             
             <label for="Contra" style="font-size:20px">Contraseña</label>
-            <input type="password" class="form-control form-control-lg" style="font-size:20px" id="Contra" placeholder="Prueba123">
+            <input type="password" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "20" class="form-control form-control-lg" style="font-size:20px" id="Contra" placeholder="Prueba123">
          </div>
          <input type="hidden" name="action" id="action">
          <input type="button" name="crear_cliente" id="crear_cliente" class="btn btn-info" value="Añadir Cliente">
@@ -150,6 +150,9 @@ foreach ($result as $row){
                     success:function(data)
                     {
                         alert(data);
+                        if(data=="Se insertaron los datos correctamente"){
+                           window.location.href = "registrar_admin.php";
+                        }
                     }
                     }
                 )

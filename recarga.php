@@ -108,8 +108,8 @@ foreach ($result as $row){
          <div class="form-group">
             <label for="cantidad_botellones" style="font-size:20px">Cantidad de botellones:</label>
             <input type="number" name="cantidad_botellones" style="font-size:20px" id="cantidad_botellones" class="form-control"> <br>
-            <label for="litros_por_botellon" style="font-size:20px">Litros llenados por botellon:</label>
-            <input type="number " name="litros_por_botellon" style="font-size:20px" id="litros_por_botellon" class="form-control"> <br>
+            <label for="litros_por_botellon"style="font-size:20px">Litros llenados por botellon:</label>
+            <input type="number " name="litros_por_botellon" onkeyup="agregarDecimal()" style="font-size:20px" id="litros_por_botellon" class="form-control"> <br>
             <label for="zona_botellon" style="font-size:20px">Zona del país:</label><br>
 
             <select class="form-select form-select-lg mb-3" style="font-size:20px" name="zona_botellon" id="zona_botellon"> 
@@ -152,6 +152,20 @@ var regresar = document.querySelector("#regresar");
 
 
 el_second.style.display = "none";
+
+var litros_por_botellon = document.querySelector("#litros_por_botellon");
+
+function agregarDecimal() {
+  var num = litros_por_botellon.value.replace(/\./g,'');
+  if(!isNaN(num)){
+    num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{2})?/,'$1.');
+    num = num.split('').reverse().join('').replace(/^[\.]/,'');
+    litros_por_botellon.value = num;
+  } else {
+    alert('Solo se permiten números');
+    litros_por_botellon.value = litros_por_botellon.value.replace(/[^\d\.]*/g,'');
+  }
+}
 
 
 
